@@ -1,0 +1,29 @@
+{
+  "name": "ansballard.github.io",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "start": "esbuild src/index.jsx --bundle --sourcemap --servedir=./public --outdir=./public/dist",
+    "build": "esbuild src/index.jsx --define:process.env.NODE_ENV=\\\"production\\\" --bundle --minify --sourcemap --outdir=./public/dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ansballard/ansballard.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ansballard/ansballard.github.io/issues"
+  },
+  "homepage": "https://github.com/ansballard/ansballard.github.io#readme",
+  "dependencies": {
+    "preact": "^10.6.6"
+  },
+  "devDependencies": {
+    "esbuild": "^0.14.25"
+  }
+}
