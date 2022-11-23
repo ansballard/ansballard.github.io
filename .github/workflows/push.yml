@@ -4,22 +4,34 @@ on:
     branches:
       - main
 jobs:
-  build-and-test:
+  build:
     runs-on: ubuntu-latest
-    name: Build and test
+    name: Build
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Install Node 16
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: '16'
       - name: 🚧 Install Deps
         uses: bahmutov/npm-install@v1
       - name: 🏗️ Build
         run: npm run build
-      - name: 🚀 Deploy
-        uses: JamesIves/github-pages-deploy-action@v4
+      - name: ☁️ Upload
+        uses: actions/upload-pages-artifact@v1
         with:
-          branch: gh-pages
-          folder: public
+          path: ./public
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    name: Deploy
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
+    
+      
